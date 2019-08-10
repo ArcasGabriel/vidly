@@ -48,6 +48,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -123,13 +129,54 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908100620117_InitialDbSets.cs" />
+    <Compile Include="Migrations\201908100620117_InitialDbSets.Designer.cs">
+      <DependentUpon>201908100620117_InitialDbSets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101507082_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\201908101507082_PopulateMembershipTypes.Designer.cs">
+      <DependentUpon>201908101507082_PopulateMembershipTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101539408_UpdateMembershipTypeWithName.cs" />
+    <Compile Include="Migrations\201908101539408_UpdateMembershipTypeWithName.Designer.cs">
+      <DependentUpon>201908101539408_UpdateMembershipTypeWithName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101557430_CustomerBirthdate.cs" />
+    <Compile Include="Migrations\201908101557430_CustomerBirthdate.Designer.cs">
+      <DependentUpon>201908101557430_CustomerBirthdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101559393_RemoveDuplicateMembershipTypeIdFromCustomer.cs" />
+    <Compile Include="Migrations\201908101559393_RemoveDuplicateMembershipTypeIdFromCustomer.Designer.cs">
+      <DependentUpon>201908101559393_RemoveDuplicateMembershipTypeIdFromCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101622166_GenresModel.cs" />
+    <Compile Include="Migrations\201908101622166_GenresModel.Designer.cs">
+      <DependentUpon>201908101622166_GenresModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101627411_UpdateModelMovies.cs" />
+    <Compile Include="Migrations\201908101627411_UpdateModelMovies.Designer.cs">
+      <DependentUpon>201908101627411_UpdateModelMovies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101628236_PopulateGenresData.cs" />
+    <Compile Include="Migrations\201908101628236_PopulateGenresData.Designer.cs">
+      <DependentUpon>201908101628236_PopulateGenresData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -169,10 +216,16 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Movies\Random.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="ViewsModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -186,6 +239,32 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201908100620117_InitialDbSets.resx">
+      <DependentUpon>201908100620117_InitialDbSets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101507082_PopulateMembershipTypes.resx">
+      <DependentUpon>201908101507082_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101539408_UpdateMembershipTypeWithName.resx">
+      <DependentUpon>201908101539408_UpdateMembershipTypeWithName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101557430_CustomerBirthdate.resx">
+      <DependentUpon>201908101557430_CustomerBirthdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101559393_RemoveDuplicateMembershipTypeIdFromCustomer.resx">
+      <DependentUpon>201908101559393_RemoveDuplicateMembershipTypeIdFromCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101622166_GenresModel.resx">
+      <DependentUpon>201908101622166_GenresModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101627411_UpdateModelMovies.resx">
+      <DependentUpon>201908101627411_UpdateModelMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101628236_PopulateGenresData.resx">
+      <DependentUpon>201908101628236_PopulateGenresData.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
