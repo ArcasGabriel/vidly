@@ -3,6 +3,9 @@
 @{ ViewBag.Title = "Customers";}
 
 <h1>Customers</h1>
+
+@Html.ActionLink("New Customer", "New", "Customers", new { @class = "btn btn-primary" })
+
 @if (!Model.Any())
 {
     <text>There are no customers created!</text>
@@ -17,17 +20,17 @@ else
             </tr>
         </thead>
         <tbody>
-                @foreach (var customer in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)
-                        </td>
-                        <td>
-                            @customer.MembershipType.Name
-                        </td>
-                    </tr>
-                }
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)
+                    </td>
+                    <td>
+                        @customer.MembershipType.Name
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 }

@@ -167,13 +167,24 @@
     <Compile Include="Migrations\201908101628236_PopulateGenresData.Designer.cs">
       <DependentUpon>201908101628236_PopulateGenresData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908101946071_GenreFixForMovieRelationship.cs" />
+    <Compile Include="Migrations\201908101946071_GenreFixForMovieRelationship.Designer.cs">
+      <DependentUpon>201908101946071_GenreFixForMovieRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101951283_FixCustomerModelWithMembershipRelationship.cs" />
+    <Compile Include="Migrations\201908101951283_FixCustomerModelWithMembershipRelationship.Designer.cs">
+      <DependentUpon>201908101951283_FixCustomerModelWithMembershipRelationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\Min18YearsOld.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewsModels\FormCustomerViewModel.cs" />
+    <Compile Include="ViewsModels\FormMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lumen.css" />
@@ -222,10 +233,11 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
+    <Content Include="Views\Customers\CustomerForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewsModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -264,6 +276,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908101628236_PopulateGenresData.resx">
       <DependentUpon>201908101628236_PopulateGenresData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101946071_GenreFixForMovieRelationship.resx">
+      <DependentUpon>201908101946071_GenreFixForMovieRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101951283_FixCustomerModelWithMembershipRelationship.resx">
+      <DependentUpon>201908101951283_FixCustomerModelWithMembershipRelationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
