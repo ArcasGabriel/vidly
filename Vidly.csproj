@@ -211,14 +211,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\Api\RentalsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\RentalController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
+    <Compile Include="Dtos\NewRentalDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -275,6 +278,18 @@
     <Compile Include="Migrations\201908170614049_LastestFixesForDB.Designer.cs">
       <DependentUpon>201908170614049_LastestFixesForDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908171649449_NewModelDbSet.cs" />
+    <Compile Include="Migrations\201908171649449_NewModelDbSet.Designer.cs">
+      <DependentUpon>201908171649449_NewModelDbSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908171747062_IncludeNumberAvailabilityInMovieDb.cs" />
+    <Compile Include="Migrations\201908171747062_IncludeNumberAvailabilityInMovieDb.Designer.cs">
+      <DependentUpon>201908171747062_IncludeNumberAvailabilityInMovieDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908171817385_StockAvailability.cs" />
+    <Compile Include="Migrations\201908171817385_StockAvailability.Designer.cs">
+      <DependentUpon>201908171817385_StockAvailability.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\AppRole.cs" />
@@ -286,6 +301,7 @@
     <Compile Include="Models\Min18YearsOld.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewsModels\FormCustomerViewModel.cs" />
@@ -456,6 +472,9 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -469,10 +488,14 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -584,6 +607,12 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -639,6 +668,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Movies\ReadOnlyList.cshtml" />
+    <Content Include="Views\Rental\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -685,6 +715,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908170614049_LastestFixesForDB.resx">
       <DependentUpon>201908170614049_LastestFixesForDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908171649449_NewModelDbSet.resx">
+      <DependentUpon>201908171649449_NewModelDbSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908171747062_IncludeNumberAvailabilityInMovieDb.resx">
+      <DependentUpon>201908171747062_IncludeNumberAvailabilityInMovieDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908171817385_StockAvailability.resx">
+      <DependentUpon>201908171817385_StockAvailability.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

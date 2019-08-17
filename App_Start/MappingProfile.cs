@@ -22,6 +22,10 @@ namespace Vidly.IdentiyConfig
             Mapper.CreateMap<MovieDto, Movie>().ForMember(m => m.Id, opt => opt.Ignore());
             Mapper.CreateMap<Genre, GenreDto>();
 
+            // Rental
+            Mapper.CreateMap<Rental, NewRentalDto>();
+            Mapper.CreateMap<NewRentalDto, Rental>().ForMember(m=>m.Id, opt=> opt.Ignore());
+
         }
     }
 }
