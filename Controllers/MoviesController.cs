@@ -24,7 +24,7 @@ namespace Vidly.Controllers
             _context.Dispose();
         }
 
-
+        [Authorize(Roles = AppRole.CanManageMovies)]
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Bad boys" };
@@ -32,11 +32,12 @@ namespace Vidly.Controllers
         }
         public ActionResult Index()
         {
-
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
-            return View(movies);
+            if (User.IsInRole(AppRole.CanManageMovies))
+                return View("List");
+            return View("ReadOnlyList");
         }
 
+        [Authorize(Roles=AppRole.CanManageMovies)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
@@ -53,6 +54,7 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Movies");
         }
 
+        [Authorize(Roles = AppRole.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
@@ -68,6 +70,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = AppRole.CanManageMovies)]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {

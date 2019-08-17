@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-namespace Vidly.App_Start
+namespace Vidly.IdentiyConfig
 {
     public class WebApiConfig
     {

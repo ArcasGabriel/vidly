@@ -22,6 +22,8 @@ namespace Vidly.Controllers.Api
         // GET api/movies
         public IHttpActionResult GetMovies()
         {
+            if (!User.Identity.IsAuthenticated)
+                return Unauthorized();
             var movies = _context.Movies
                 .Include(m => m.Genre)
                 .ToList()
@@ -33,6 +35,8 @@ namespace Vidly.Controllers.Api
         // GET api/movies/1
         public IHttpActionResult GetMovie(int id)
         {
+            if (!User.Identity.IsAuthenticated)
+                return Unauthorized();
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
             if (movie == null)
                 return NotFound();
@@ -42,8 +46,12 @@ namespace Vidly.Controllers.Api
 
         // POST api/movies
         [HttpPost]
+        [Authorize(Roles = AppRole.CanManageMovies)]
         public IHttpActionResult CreateMovie(MovieDto movieDto)
         {
+            if (!User.IsInRole(AppRole.CanManageMovies))
+                return Unauthorized();
+
             if (!ModelState.IsValid)
                 return BadRequest();
 
@@ -58,8 +66,12 @@ namespace Vidly.Controllers.Api
 
         // PUT api/movies/1
         [HttpPut]
+        [Authorize(Roles = AppRole.CanManageMovies)]
         public IHttpActionResult UpdateMovie(int id, MovieDto movieDto)
         {
+            if (!User.IsInRole(AppRole.CanManageMovies))
+                return Unauthorized();
+
             if (!ModelState.IsValid)
                 return BadRequest();
 
@@ -75,8 +87,12 @@ namespace Vidly.Controllers.Api
 
         // DELETE api/movies/1
         [HttpDelete]
+        [Authorize(Roles = AppRole.CanManageMovies)]
         public IHttpActionResult DeleteMovie(int id)
         {
+            if (!User.IsInRole(AppRole.CanManageMovies))
+                return Unauthorized();
+
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
             if (movie == null)
                 return NotFound();
