@@ -16,14 +16,15 @@ namespace Vidly.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+
+            ViewBag.Message = "Vidly movies rental shop.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contact us for any further information.";
 
             return View();
         }
